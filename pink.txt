@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+int n;
+cin>>n;
+int arr[n];
+stack<int>s;
+stack<int>s1;
+
+for(int i=0;i<n;i++)
+cin>>arr[i];
+
+for(int i=n-1;i>=0;i--) 
+s.push(arr[i]);
+
+sort(arr,arr+n);
+
+int j=0;
+int flag=0;
+
+while(!s.empty())
+{
+
+if(!s1.empty()&&arr[j]==s1.top())
+
+s1.pop();
+
+
+else if(arr[j]!=s.top())
+{
+if(!s1.empty()&&s.top()>s1.top())
+{
+flag=1;
+break;
+}
+s1.push(s.top());
+s.pop();
+continue;
+}
+else if(arr[j]==s.top())
+s.pop();
+
+j++;
+
+}
+if(flag==1)
+cout<<"Sad";
+else
+cout<<"Happy";
+
+return 0;
+}
